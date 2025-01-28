@@ -7,25 +7,25 @@
 </head>
 <body>
     <h1>BLOG</h1>
-    <h2>今月の新刊一覧</h2>
-        {% if books == [] %}
-            <p>今月の新刊情報はまだありません</p>
+        {% if blogs == [] %}
+            <p>投稿済みのブログはありません</p>
         {% else %}
             <table border="1">
                 <tr>
-                    <th>入荷日</th>
+                    <th>投稿日</th>
                     <th>タイトル</th>
-                    <th>金額</th>
+                    <th>内容</th>
                 </tr>
-                {% for book in books %}
+                {% for blog in blogs %}
                     <tr>
-                        <td>{{ book.arrival_day }}</td>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.price }}円</td>
+                        <td>{{ blog.post_date }}</td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.body }}</td>
                     </tr>
                 {% endfor %}
             </table>
         {% endif %}
-    <a href="{{ url_for('form') }}">編集</a>
+    <br>
+    <a href="{{ url_for('form') }}">投稿</a>
 </body>
 </html>

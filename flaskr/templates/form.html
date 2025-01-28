@@ -10,14 +10,14 @@
     <form method="post" action="{{ url_for('register') }}">
         <table border="1">
             <tr>
-                <th>入荷日</th>
+                <th>投稿日</th>
                 <th>タイトル</th>
-                <th>金額</th>
+                <th>内容</th>
             </tr>
             <tr>
-                <td><input type="text" name="arrival_day"></td>
+                <td><input type="date" name="post_date"></td>
                 <td><input type="text" name="title"></td>
-                <td><input type="text" name="price"></td>
+                <td><input type="text" name="body"></td>
             </tr>
         </table>
         <br>
