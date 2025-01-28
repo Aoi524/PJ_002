@@ -5,25 +5,24 @@ app = Flask(__name__)
 
 DATABASE = 'database.db'
 
-def create_books_table():
+def create_blogs_table():
     con = sqlite3.connect(DATABASE)
-    con.execute("CREATE TABLE IF NOT EXISTS books (title, price, arrival_day)")
+    con.execute("CREATE TABLE IF NOT EXISTS blogs (title, body, post_date)")
     con.close()
 
-create_books_table()
+create_blogs_table()
 
 @app.route('/')
 def index():
-    # return render_template('index.html')
     con = sqlite3.connect(DATABASE)
-    db_books = con.execute('SELECT * FROM books').fetchall()
+    db_blogs = con.execute('SELECT * FROM blogs').fetchall()
     con.close()
 
-    books = []
-    for row in db_books:
-        books.append({'title': row[0], 'price': row[1], 'arrival_day': row[2]})
+    blogs = []
+    for row in db_blogs:
+        blogs.append({'title': row[0], 'body': row[1], 'post_date': row[2]})
 
-    return render_template('index.html', books=books)
+    return render_template('index.html', blogs=blogs)
     
 @app.route('/form')
 def form():
@@ -32,11 +31,11 @@ def form():
 @app.route('/register', methods=['POST'])
 def register():
     title = request.form['title']
-    price = request.form['price']
-    arrival_day = request.form['arrival_day']
+    body = request.form['body']
+    post_date = request.form['post_date']
 
     con = sqlite3.connect(DATABASE)
-    con.execute('INSERT INTO books VALUES (?, ?, ?)', [title, price, arrival_day])
+    con.execute('INSERT INTO blogs VALUES (?, ?, ?)', [title, body, post_date])
     con.commit()
     con.close()
 
