@@ -26,3 +26,6 @@
 
 # Database
 mysql/*
+
+# Environment
+.env
