@@ -81,14 +81,21 @@ $create_table_sql->execute();
                             <?php echo htmlspecialchars($post['content'], ENT_QUOTES, 'UTF-8'); ?>
                         </p>
                     </div>
+                    <?php
+                        // 投稿のIDを取得
+                        $post_id = htmlspecialchars($post['id'], ENT_QUOTES, 'UTF-8');
+                    ?>
                     <div class="card-footer text-muted">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex justify-content-start gap-3">
                                 <div class="col-auto">
-                                    <a href="/edit.php" class="btn btn-primary">編集</a>
+                                    <a href="/edit.php?id=<?php echo $post_id; ?>" class="btn btn-primary">編集</a>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="#" class="btn btn-danger">削除</a>
+                                    <form method="post" action="/delete.php?id=<?php echo $post_id; ?>" onsubmit="return confirm('本当に削除しますか？');">
+                                        <input type="hidden" name="id" value="<?php echo $post_id; ?>">
+                                        <button type="submit" class="btn btn-danger">削除</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
