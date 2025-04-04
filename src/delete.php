@@ -2,7 +2,6 @@
 // 必ずファイルの先頭からコードを記述
 session_start();
 // データベース接続
-// データベース接続
 try {
     $pdo = new PDO(
         'mysql:host=mysql;dbname=blog_db;charset=utf8mb4',
