@@ -1,3 +1,36 @@
+<?php
+// src/list.php
+// 投稿一覧を表示するページ
+
+try {
+    // データベース接続
+    $pdo = new PDO(
+        'mysql:host=mysql;dbname=blog_db;charset=utf8mb4',
+        'user',
+        'password',
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ]
+        );
+} catch (PDOException $e) {
+    // エラーメッセージを表示
+    echo 'データベース接続エラー: ' . $e->getMessage();
+    exit;
+}
+
+// データベースの初期化
+$create_table_sql = $pdo->prepare('
+    CREATE TABLE IF NOT EXISTS posts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        content TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+');
+$create_table_sql->execute();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
