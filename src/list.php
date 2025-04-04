@@ -60,13 +60,7 @@ $create_table_sql->execute();
                 </div>
             </div>
         </nav>
-        <!-- テストデータ -->
         <?php
-            // $posts = [
-            //     ['title' => 'タイトル1', 'content' => '内容1'],
-            //     ['title' => 'タイトル2', 'content' => '内容2'],
-            //     ['title' => 'タイトル3', 'content' => '内容3'],
-            // ];
             // データベースから投稿を取得
             $stmt = $pdo->query('SELECT * FROM posts ORDER BY created_at DESC');
             $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -98,7 +92,7 @@ $create_table_sql->execute();
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <p class="mb-0">投稿日時: <?php echo date('Y-m-d H:i:s'); ?></p>
+                                <p class="mb-0">投稿日時: <?php echo htmlspecialchars($post['created_at'], ENT_QUOTES, 'UTF-8'); ?></p>
                             </div>
                         </div>
                     </div>
