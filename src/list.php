@@ -62,15 +62,21 @@ $create_table_sql->execute();
         </nav>
         <!-- テストデータ -->
         <?php
-            $posts = [
-                ['title' => 'タイトル1', 'content' => '内容1'],
-                ['title' => 'タイトル2', 'content' => '内容2'],
-                ['title' => 'タイトル3', 'content' => '内容3'],
-            ];
+            // $posts = [
+            //     ['title' => 'タイトル1', 'content' => '内容1'],
+            //     ['title' => 'タイトル2', 'content' => '内容2'],
+            //     ['title' => 'タイトル3', 'content' => '内容3'],
+            // ];
+            // データベースから投稿を取得
+            $stmt = $pdo->query('SELECT * FROM posts ORDER BY created_at DESC');
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         <!-- 投稿一覧 -->
         <div class="container my-3">
             <h3>投稿一覧</h3>
+            <?php if (empty($posts)): ?>
+                <p class="text-center">投稿はありません。</p>
+            <?php endif; ?>
             <?php foreach ($posts as $post): ?>
                 <div class="card my-3">
                     <div class="card-header">
