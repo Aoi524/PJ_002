@@ -31,7 +31,7 @@
     <!-- 投稿フォーム -->
     <div class="container my-3">
         <h3>投稿フォーム</h3>
-        <form method="post" action="#">
+        <form method="post" action="/register.php">
             <div class="mb-3">
                 <label for="title" class="form-label">タイトル</label>
                 <input type="text" class="form-control" id="title" name="title" required>
